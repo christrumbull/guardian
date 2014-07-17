@@ -1,0 +1,526 @@
+<?xml version='1.0'?>
+<config>
+    <sections>
+        <carriers>
+            <groups>
+                <deviantpurolator translate="label" module="shipping">
+                    <label>Purolator</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>13</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <general_label translate="label">
+                            <label>&lt;b>General&lt;/b></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment/>
+                        </general_label>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>                        
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <showmethod translate="label">
+                            <label>Show Method if Not Available</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>30</sort_order>
+                            <frontend_class>shipping-skip-hide</frontend_class>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showmethod>
+                        <locale_choose translate="label">
+                            <label>Choose locale</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ddshippinga/purolator</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </locale_choose>
+                        
+                        <account_label translate="label">
+                            <label><![CDATA[<b>Account</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>39</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br />You must <a href="https://eship.purolator.com/site/en/Default.aspx" target="_blank">register for an E-Ship Web Services account</a> with Purolator to get an API Access Key and Password. In addition, you must also have <a href="https://eshiponline.purolator.com/ShipOnline/SecurePages/Public/Register.aspx" target="_blank">a business account</a> with Purolator for the billing account and registered account numbers.</span>]]></comment>
+                        </account_label>
+                        <api_access_key translate="label">
+                            <label>API Access Key</label>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_access_key>
+                        <api_password translate="label">
+                            <label>Password</label>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_password>
+                        <billing_acct translate="label">
+                            <label>Billing Account</label>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </billing_acct>
+                        <registered_acct translate="label">
+                            <label>Registered Account</label>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </registered_acct>
+                        
+                        <shipping_label translate="label">
+                            <label><![CDATA[<b>Shipping</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>79</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br /></span>]]></comment>
+                        </shipping_label>
+                        <allowed_methods translate="label">
+                            <label>Allowed Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>ddshippinga/PurolatorShipmentTypes</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allowed_methods>
+                        
+                        <free_method translate="label">
+                            <label>Free Shipping Service</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ddshippinga/PurolatorShipmentTypes</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_method>                        
+                        <free_shipping_with_minimum_order_amount translate="label">
+                            <label>Minimum Order for Free Shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Sets the minimum order subtotal for free shipping. Leave blank to disable free shipping]]></comment>
+                        </free_shipping_with_minimum_order_amount>
+                        <minimum_shipping_cost translate="label">
+                            <label>Minimum Shipping Cost</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Sets a minimum shipping cost inclusive of handling & markup.]]></comment>
+                        </minimum_shipping_cost>
+                        
+                        <handling_label translate="label">
+                            <label><![CDATA[<b>Handling</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>119</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br /></span>]]></comment>
+                        </handling_label>
+                        <fixed_handling translate="label">
+                            <label>Fixed Handling</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Adds a fixed amount to the shipping cost.]]></comment>
+                        </fixed_handling>
+                        <percent_markup translate="label">
+                            <label>Percent Markup</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Increases shipping quote by percent amount. Not applied to fixed handling.]]></comment>
+                        </percent_markup>
+                        <days_for_handling translate="label">
+                            <label>Days for Handling</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Specifies how many days required prior to shipment.]]></comment>
+                        </days_for_handling>
+                        
+                        <weight_label translate="label">
+                            <label><![CDATA[<b>Weight Dimensions</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>149</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br /></span>]]></comment>
+                        </weight_label>
+                        <convert_weight translate="label">
+                            <label>Weight Units</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ddshippinga/PurolatorWeightConversion</source_model>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Specifies unit of measurement for product weights.]]></comment>
+                        </convert_weight>
+                        <calculate_dimension_weight>
+                            <label>Dimensional Weight</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Sends product dimensions for a more accurate quote.]]></comment>
+                        </calculate_dimension_weight>
+                        <max_package_weight>
+                            <label>Maximum Package Weight</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Specifies the maximum weight (in KG or LBS Dependent on <b>Weight Units</b>) for each package in the shipment.]]></comment>
+                        </max_package_weight>
+                        
+                        
+                        <linear_label translate="label">
+                            <label><![CDATA[<b>Linear Dimensions</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>171</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br />
+                            Required if <b>Dimensional Weight</b> is set to yes.<br />
+                            
+                            Length, Width, Height: Leave blank for default. Enter values if not using custom attributes.
+                            </span>]]></comment>
+                        </linear_label>                        
+                        <convert_size translate="label">
+                            <label>Linear Units</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ddshippinga/PurolatorDimensionConversion</source_model>
+                            <sort_order>172</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Specifies unit of measurement (inch or cm) for product dimensions</comment>
+                        </convert_size>                        
+                        <widthattribute translate="label">
+                            <label>Width Attribute</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>173</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </widthattribute>
+                        <defaultwidth translate="label">
+                            <label>Default width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>174</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </defaultwidth>
+                        <lengthattribute translate="label">
+                            <label>Length Attribute</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>175</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lengthattribute>
+                        <defaultlength translate="label">
+                            <label>Default length</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>176</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </defaultlength>
+                        <heightattribute translate="label">
+                            <label>Height Attribute</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>177</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </heightattribute>
+                        <defaultheight translate="label">
+                            <label>Default height</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>178</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </defaultheight>
+                                                
+                        <virtual_label translate="label">
+                            <label><![CDATA[<b>Virtual Box</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>183</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br /></span>]]></comment>
+                        </virtual_label>                        
+                        <virtual_box_mode translate="label">
+                            <label>Virtual Box Mode</label>
+                            <sort_order>184</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Simulates a multi-piece shipment by grouping products into "virtual boxes."]]></comment>
+                        </virtual_box_mode>
+                        <dimensional_multiplier>
+                            <label>Dimensional Weight Factor</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ddshippinga/PurolatorCalculationFactor</source_model>
+                            <sort_order>185</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Specifies whether to use Ground or Express factor when estimating dimensional weight for virtual boxes.]]></comment>
+                        </dimensional_multiplier>
+                        
+                        <address_label translate="label">
+                            <label><![CDATA[<b>Address Validation</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>189</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br /></span>]]></comment>
+                        </address_label>                        
+                        <address_validation>
+                            <label>Full Address Validation</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Determines whether shipping address must be valid (i.e. city, region, and postal/zip code are all aligned). All three must align if set to "Yes." If set to "No," city and region will be automatically corrected based on postal/zip code]]></comment>
+                        </address_validation>
+                        <address_validation_warning>
+                            <label>Show Correction Warning</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>191</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Show Correction Warning.]]></comment>
+                        </address_validation_warning>
+                        
+                        
+                        <delivery_label translate="label">
+                            <label><![CDATA[<b>Delivery options</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>199</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br />
+                              Options for Canadian, U.S., International Shipping: Specified in comma delimited format. See Installation Guide for list of configurable values.                            
+                            </span>]]></comment>
+                        </delivery_label>                        
+                        <sallowspecific translate="label">
+                            <label>Ship to Applicable Countries</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>200</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>&#xd;
+              adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label">
+                            <label>Ship to Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>201</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <options_information_canada>
+                            <label>Options for Canadian Shipping</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>202</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </options_information_canada>
+                        <options_information_us>
+                            <label>Options for U.S. Shipping</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>203</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </options_information_us>
+                        <options_information_international>
+                            <label>Options for International Shipping</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>204</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </options_information_international>
+                        
+                        
+
+                        <developer_label translate="label">
+                            <label><![CDATA[<b>Developer</b>]]></label>
+                            <bold>1</bold>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>209</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<span style="position:relative;background-color:white;left:-10px;display:inline-block"><br />
+                            </span>]]></comment>
+                        </developer_label>                        
+                        <developer_mode translate="label">
+                            <label>Developer Mode</label>
+                            <sort_order>210</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </developer_mode>
+                        <json_description translate="label">
+                            <label>Store Json Request</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </json_description>
+                        <log_mode translate="label">
+                            <label>Log File</label>
+                            <sort_order>230</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </log_mode>
+                        <specificerrmsg translate="label">
+                            <label>Displayed Error Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificerrmsg>
+                        
+                        
+                        <!--originpostalcode translate="label">
+              <label>Ship from postal code (leave blank to use stores postal code)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>240</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </originpostalcode -->
+
+                        <!-- handling_type translate="label">
+              <label>Calculate Handling Fee</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingType</source_model>
+              <sort_order>300</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </handling_type>
+            <handling_action translate="label">
+              <label>Handling Applied</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingAction</source_model>
+              <sort_order>310</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </handling_action>
+            <handling_fee translate="label">
+              <label>Handling fee</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>320</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </handling_fee -->
+                    </fields>
+                </deviantpurolator>
+            </groups>
+        </carriers>
+    </sections>
+</config>

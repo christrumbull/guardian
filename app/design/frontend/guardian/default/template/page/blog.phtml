@@ -1,0 +1,120 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $bodyClasses = $this->getBodyClass() .' '. $this->helper('ultimo')->getThemeBodyClasses(); ?>
+<body class="<?php echo $bodyClasses; ?>">
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div id="root-wrapper">
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col2-left-layout">
+            <div class="main-before-top-container"><?php echo $this->getChildHtml('main_before_top') ?></div>
+            <div class="main container">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+                <div class="preface grid-full in-col1">
+				</div>
+                <div class="col-main grid12-9 grid-col2-main in-col2">
+                    <?php echo $this->getChildHtml('global_messages') ?>
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
+                <div class="col-left sidebar grid12-3 grid-col2-sidebar in-sidebar">
+				<div class="block block-layered-nav">
+				<div class="block-content about">
+					<dl id="narrow-by-list">
+						<dt class="odd">Categories</dt>
+						<?php //$posts = $this->getPosts("news"); foreach($posts as $post): echo $post->getShortContent(); endforeach; ?>
+							<dd class="odd">
+								<ul>
+									<?php   $catDB = mysql_connect('localhost', 'guardian_magento', '44MB65qrFGgb') or die(mysql_error());
+											mysql_select_db('guardian_magento', $catDB) or die(mysql_error());
+											$catSQL = "SELECT * FROM `aw_blog_cat` ORDER BY `title` ASC LIMIT 0, 1000";
+											$catRESULT = mysql_query($catSQL) or die(mysql_error()); 
+											while ($catROW = mysql_fetch_assoc($catRESULT)): ?>
+											<li><a href="/healthy-living/cat/<?php echo $catROW['identifier']; ?>" class="<?php if(Mage::getSingleton('blog/cat')->getTitle() == $catROW['title']) { echo 'active'; } ?>"><span class="price"><?php echo $catROW['title']; ?></span></a></li>
+									<?php	endwhile; ?>
+									<!--<li><a href="/healthy-living/cat/air-purifiers/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Air Purifiers</span></a></li>
+
+									<li><a href="/healthy-living/cat/air-quality/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'Product Instruction Manuals') { echo 'active'; } ?>"><span class="price">Air Quality</span></a></li>
+
+									<li><a href="/healthy-living/cat/air-sanitizers/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'Contact Guardian Technologies&trade;') { echo 'active'; } ?>"><span class="price">Air Sanitizers</span></a></li>
+
+									<li><a href="/healthy-living/cat/allergies/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'Product Return Policy') { echo 'active'; } ?>"><span class="price">Allergies</span></a></li>
+
+									<li><a href="/healthy-living/cat/asthma/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'Guardian Technologies&trade; In-Warranty & Out-Of-Warranty Repair Information') { echo 'active'; } ?>"><span class="price">Asthma</span></a></li>
+
+									<li><a href="/healthy-living/cat/colds-and-flu/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Colds and Flu</span></a></li>
+
+									<li><a href="/healthy-living/cat/dust/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Dust</span></a></li>
+
+									<li><a href="/healthy-living/cat/exercise/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Exercise</span></a></li>
+
+									<li><a href="/healthy-living/cat/germ-prevention/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Germ Prevention</span></a></li>
+
+									<li><a href="/healthy-living/cat/healthy-eating/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Healthy Eating</span></a></li>
+
+									<li><a href="/healthy-living/cat/home-safety" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Home Safety</span></a></li>
+
+									<li><a href="/healthy-living/cat/mold/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Mold</span></a></li>
+
+									<li><a href="/healthy-living/cat/pet-allergies/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Pet Allergies</span></a></li>
+
+									<li><a href="/healthy-living/cat/product-information/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Product Information</span></a></li>
+
+									<li><a href="/healthy-living/cat/special-features/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Special Features</span></a></li>
+
+									<li><a href="/healthy-living/cat/ultrasonic-humidifiers/" class="<?php if(Mage::getSingleton('cms/page')->getTitle() == 'FAQs') { echo 'active'; } ?>"><span class="price">Ultrasonic Humidifiers</span></a></li>-->
+
+								</ul>
+							</dd>
+					</dl>
+            </div></div>
+			<div class="sidebar_green">
+  <img src="/img/supporticon.png"><h4>Air Quality Education</h4>Inside air is capable of affecting an individual's <strong>health, comfort and ability to work.</strong> <button onclick="parent.location='/learning-center/'" class="button btn-support"><span> <span> See How We Can Help </span> </span> </button></div>
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('sidebar-ads')->toHtml(); ?></div>
+                <div class="postscript grid-full in-col1"><?php echo $this->getChildHtml('postscript') ?></div>
+            </div>
+        </div>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('global_cookie_notice') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+</div> <!-- end: root-wrapper -->
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

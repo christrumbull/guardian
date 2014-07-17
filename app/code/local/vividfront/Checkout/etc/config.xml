@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <vividfront_Checkout>
+            <version>0.1.0</version>
+        </vividfront_Checkout>
+    </modules>
+ 
+    <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <vividfront_Checkout before="Mage_Checkout">vividfront_Checkout</vividfront_Checkout>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+    </frontend>
+</config>

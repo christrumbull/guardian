@@ -1,0 +1,16 @@
+<?php
+$categoryId = 49;
+$category = Mage::getModel('catalog/category')->load($categoryId);
+$_helper = $this->helper('catalog/output');
+
+
+$products = Mage::getModel('catalog/product')
+    ->getCollection()
+    ->addCategoryFilter($category)
+    ->load();
+
+foreach($products as $product):
+echo $product->getSku();
+endforeach;
+?>
+

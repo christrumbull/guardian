@@ -1,0 +1,344 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php   
+    $theme = $this->helper('ultimo');   
+    $headerInnerBgColor     = $theme->getCfgDesign('header/inner_bg_color');
+    $navStretched           = $theme->getCfgDesign('nav/stretched');
+    $navInnerBgColor        = $theme->getCfgDesign('nav/inner_bg_color');
+    $mainInnerBgColor       = $theme->getCfgDesign('main/inner_bg_color');
+    
+    //Header settings
+    $headerCss = array();
+    
+    if ($theme->isColor($headerInnerBgColor))
+    {
+        $headerCss[] = 'show-bg';
+    }
+    else
+    {
+        //If header has no color and menu is stretched, header is also stretched
+        if ($navStretched)
+        {
+            $headerCss[] = 'stretched';
+        }
+    }
+    
+    //Menu settings
+    $navCss = array();
+    
+    //Is menu stretched (full available width, margins are removed)
+    if ($navStretched)
+    {
+        $navCss[] = 'stretched';
+    }
+    
+    //If header or menu have bg color, nav also has bg color
+    if ($theme->isColor($headerInnerBgColor))
+    {
+        $navCss[] = 'show-bg';
+    }
+    elseif ($theme->isColor($mainInnerBgColor))
+    {
+        $navCss[] = 'show-bg';
+    }
+
+    if ($theme->isColor($navInnerBgColor))
+    {
+        $navCss[] = 'has-outline';
+    }
+?>
+<?php
+    //Search box classes
+    $searchClasses = ' search-wrapper search-wrapper-mobile';
+
+    //Search box
+    $tmpHtml = $this->getChildHtml('topSearch');
+    $searchPosition = $theme->getCfg('header/search_position');
+    switch ($searchPosition)
+    {
+        case 20:
+            $p['centralCol'][0] = $tmpHtml;
+            break;
+        case 30:
+            $p['rightCol'][0] = $tmpHtml;
+            break;
+        case 31:
+            $p['rightCol'][1] = $tmpHtml;
+            break;
+        case 32:
+            $p['rightCol'][2] = $tmpHtml;
+            break;
+        case 33:
+            $p['rightCol'][3] = $tmpHtml;
+            break;
+    }
+
+    //Line break
+    $tmpHtml = '<div class="line-break-after"></div>';
+    $lineBreakPosition = $theme->getCfg('header/toplinks_break_position');
+    switch ($lineBreakPosition)
+    {
+        case 30:
+            $p['rightColBreak'][0] = $tmpHtml;
+            break;
+        case 31:
+            $p['rightColBreak'][1] = $tmpHtml;
+            break;
+        case 32:
+            $p['rightColBreak'][2] = $tmpHtml;
+            break;
+        case 33:
+            $p['rightColBreak'][3] = $tmpHtml;
+            break;
+        case 34:
+            $p['rightColBreak'][4] = $tmpHtml;
+            break;
+        case 35:
+            $p['rightColBreak'][5] = $tmpHtml;
+            break;
+    }
+
+
+
+    // --------------------------------------------------------------
+    //Width (in grid units) of sections
+    $leftColUnits               = 4; //$theme->getCfg('header/left_column');
+    $centralColUnits            = 4; //$theme->getCfg('header/center_column');
+    $rightColUnits              = 4; //$theme->getCfg('header/right_column');
+
+    //If no search box in the center
+    if (!isset($p['centralCol']))
+    {
+        $centralColUnits        = 0;
+        $rightColUnits          += 12 - ($leftColUnits + $rightColUnits);
+    }
+
+    //Grid classes
+    $leftColGridClass           = 'grid12-' . $leftColUnits;
+    $centralColGridClass        = 'grid12-' . $centralColUnits;
+    $rightColGridClass          = 'grid12-' . $rightColUnits;
+    if (empty($centralColUnits))
+    {
+        $centralColGridClass = '';
+    }
+
+    // --------------------------------------------------------------
+    
+?>
+<div class="header-container" id="top">
+<div class="topBar">
+				<div class="topBarWrap clearfix">
+					<!----<Top Menu>---->
+					<div class="topBarLeft">
+						<ul>
+							<li><a href="http://www.guardiantechnologies.com/" target="_blank">Home</a></li>
+							<li><a href="http://www.guardiantechnologies.com/about/" target="_blank">About</a></li>
+							<li><a href="http://www.guardiantechnologies.com/support/" target="_blank">Support</a></li>
+							<li><a href="http://www.guardiantechnologies.com/faqs/" target="_blank">FAQ</a></li>
+							<li><a href="http://www.guardiantechnologies.com/contact/" target="_blank">Contact Us</a></li>
+						</ul>
+					</div>
+					<!----</Top Menu>---->
+					
+					<!----<Top Contact>---->
+					<div class="topContact badmobile">
+						<h4>866.603.5900<span>M-F 8:30-4:30<sub>EST</sub></span></h4>
+					</div>
+					<div class="topContact goodmobile">
+						<h4>866.603.5900<span>M-F<br/> 8:30-4:30<sub>EST</sub></span></h4>
+					</div>
+					<!----</Top Contact>---->
+					
+					<!----<Top Right>---->
+					<div class="topBarRight">
+						<ul>
+						<?php if($this->helper('customer')->isLoggedIn()) { ?><li class="myaccount arrow"><a href="javascript:void(0)">My Account</a> <ul> <li> <a href="/customer/account/">Dashboard</a></li> <li> <a href="/customer/account/logout/">Log Out</a></li> </ul></li> <?php } else { ?> <li class="myaccount"><a href="/customer/account/login/">Log In</a></li> <?php } ?>
+							<li class="cart"><?php //Cart drop-down
+                            echo $this->getChildHtml('cart_sidebar'); ?></li>
+						</ul>
+					</div>
+					<!----</Top Right>---->
+				</div>
+			</div>
+			<ul class="menu-top goodmobile">
+							<li><a href="http://www.guardiantechnologies.com/" target="_blank">Home</a></li>
+							<li><a href="http://www.guardiantechnologies.com/about/" target="_blank">About</a></li>
+							<li><a href="http://www.guardiantechnologies.com/support/" target="_blank">Support</a></li>
+							<li><a href="http://www.guardiantechnologies.com/faqs/" target="_blank">FAQ</a></li>
+							<li><a href="http://www.guardiantechnologies.com/contact/" target="_blank">Contact</a></li>
+						</ul>
+			<!----</Top Bar>---->
+<div class="header-container2">
+<div class="header-container3">
+    <div class="header-primary-container">
+        <div class="header-primary header container<?php if($headerCss) echo " " . implode(" ", $headerCss); ?>">
+            <div class="grid-full">
+
+                <div class="header-main v-grid-container">
+
+                    <div class="logo-wrapper v-grid <?php echo $leftColGridClass; ?>">
+                    <?php if ($this->getIsHomePage()): ?>
+                        <h1 class="logo badmobile"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img style="height:100px; width:auto;" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                    <?php else: ?>
+                        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo badmobile"><strong><?php echo $this->getLogoAlt() ?></strong><img style="height:100px; width:auto;" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+                    <?php endif; ?>
+					<?php if ($this->getIsHomePage()): ?>
+                        <h1 class="logo goodmobile"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img style="height:100px; width:auto;" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                    <?php else: ?>
+                        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo goodmobile"><strong><?php echo $this->getLogoAlt() ?></strong><img style="height:100px; width:auto;" src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+                    <?php endif; ?>
+                    </div>
+					<div class="custom-top-ship">
+					<div class="freeShipping">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_slider_1')->toHtml(); ?>
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_slider_2')->toHtml(); ?>
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top_slider_3')->toHtml(); ?>
+					</div>
+				</div>
+				<script type="text/javascript">
+//<![CDATA[
+    jQuery(function($) {
+        
+        var owl = $('.freeShipping');
+        owl.owlCarousel({
+
+            navigation : true, // Show next and prev buttons
+    slideSpeed : 700,
+    paginationSpeed : 400,
+    singleItem:true,
+rewindSpeed:2000,
+    autoPlay : true,
+    navigation : false,
+    pagination : false,
+    navigationText : false,
+transitionStyle:"fade"
+
+        }); //end: owl
+
+    });
+//]]>
+</script>
+<div class="custom-top">
+                    <?php if ($centralColUnits): ?>
+                    <div class="search-wrapper-centered clearer v-grid <?php echo $centralColGridClass; ?> <?php echo $searchClasses; ?>">
+                        <?php echo $p['centralCol'][0]; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="user-menu clearer v-grid <?php echo $rightColGridClass; ?>">
+
+                        <?php if (isset($p['rightCol'][0])): ?>
+                            <div class="search-wrapper-p0 <?php echo $searchClasses; ?>"><?php echo $p['rightCol'][0]; ?></div>
+                        <?php endif; ?>
+
+                        <?php if (isset($p['rightColBreak'][0])) echo $p['rightColBreak'][0]; ?>
+
+                        <?php if (isset($p['rightColBreak'][1])) echo $p['rightColBreak'][1]; ?>
+
+                        <?php if (isset($p['rightCol'][1])): ?>
+                            <div class="search-wrapper-p1 <?php echo $searchClasses; ?>"><?php echo $p['rightCol'][1]; ?></div>
+                        <?php endif; ?>
+                        
+                        <?php if (isset($p['rightColBreak'][2])) echo $p['rightColBreak'][2]; ?>
+
+                        <?php if (isset($p['rightColBreak'][3])) echo $p['rightColBreak'][3]; ?>
+
+                        <?php if (isset($p['rightCol'][2])): ?>
+                            <div class="search-wrapper-p2 <?php echo $searchClasses; ?>"><?php echo $p['rightCol'][2]; ?></div>
+                        <?php endif; ?>
+                        
+                        <?php if (isset($p['rightColBreak'][4])) echo $p['rightColBreak'][4]; ?>
+						
+						<ul> 
+							<li class="learningCenter" id="lcMenu"> <a href="#" class="learningCenter"><span>Learning Center</span></a>
+								<ul> 
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learning-center/">Learning Center Home</a> 
+									<ul>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learn-about-air-quality/">Indoor Air Quality</a> </li>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learn-about-air-purifiers/">UV Air Purifiers</a> </li>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learn-about-air-sanitizers/">UV Air Sanitizers</a> </li>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learn-about-humidification/">Humidification</a> </li>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/learn-about-air-filters/">Air Filters</a> </li>
+									</ul>
+									</li>
+									<li><a target="_blank" href="http://www.guardiantechnologies.com/healthy-living/">Healthy Living Blog</a> </li> 
+								</ul> 
+							</li> 
+						</ul>
+                        <?php if (isset($p['rightColBreak'][5])) echo $p['rightColBreak'][5]; ?>
+
+                        <?php if (isset($p['rightCol'][3])): ?>
+                            <div class="search-wrapper-p3 <?php echo $searchClasses; ?>"><?php echo $p['rightCol'][3]; ?></div>
+                        <?php endif; ?>
+
+                    </div> <!-- end: user-menu -->
+                    
+                </div> <!-- end: v-grid-container -->
+</div>
+            </div> <!-- end: grid-full -->
+        </div> <!-- end: header-primary -->
+    </div> <!-- end: header-primary-container -->
+
+    <!--<div class="nav-container">
+        <div class="nav container clearer<?php if($navCss) echo " " . implode(" ", $navCss); ?>">
+            <?php echo $this->getChildHtml('topMenu') ?>
+        </div> --> <!-- end: nav -->
+   <!-- </div>--> <!-- end: nav-container -->
+
+</div> <!-- end: header-container3 -->
+</div> <!-- end: header-container2 -->
+</div> <!-- end: header-container -->
+<!--<script type="text/javascript" src="//s3.amazonaws.com/scripts.hellobar.com/2d54580ad4b4f88e4aa1f619c55c06057b7748e5.js"></script>-->
+
+<script type="text/javascript">
+jQuery("#lcMenu").click(function(){
+    if (jQuery(this).hasClass('active'))
+    {
+         jQuery(this).removeClass('active');
+    }
+    else
+    {
+     jQuery(this).addClass('active');
+    }
+});
+</script>
+
+<script type="text/javascript">
+jQuery(".myaccount").click(function(){
+    if (jQuery(this).hasClass('active'))
+    {
+         jQuery(this).removeClass('active');
+    }
+    else
+    {
+     jQuery(this).addClass('active');
+    }
+});
+</script>

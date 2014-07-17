@@ -1,0 +1,25 @@
+ <?php $posts = $this->getPosts(); $cats = $this->getCategories(); ?>
+ <?php Mage::getSingleton('blog/cat'); ?>
+ <?php print_r($cats); echo Mage::getSingleton('cms/page')->getTitle(); ?>
+<?php if (count($posts)): ?>
+    <?php foreach ($posts as $post): ?>
+        <div class="postWrapper">
+            <div class="postTitle">
+                <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+            </div>
+            <div class="postContent"><?php if($post->getShortContent()): echo $post->getShortContent(); else: echo $post->getPostContent(); endif; ?></div>
+            <?php echo $this->getBookmarkHtml($post) ?>
+            <div class="tags"><?php echo Mage::getBlockSingleton('blog/blog')->getTagsHtml($post) ?></div>
+            <div class="postDetails">
+                <?php if ($this->getCommentsEnabled()): ?>
+                    <?php echo $post->getCommentCount(); ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a> |
+                <?php endif; ?>
+                <?php if (!empty($postCats)): ?>
+                <?php else: ?>
+                <?php endif; ?></div>
+        </div>
+    <?php endforeach; ?>
+ <?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+<?php else: ?>
+    <?php echo Mage::helper('blog')->__('No Posts in this Category.'); ?>
+<?php endif; ?>

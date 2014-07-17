@@ -1,0 +1,82 @@
+<?php
+$categoryId = 49;
+$category = Mage::getModel('catalog/category')->load($categoryId);
+$_helper = $this->helper('catalog/output');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$_products = Mage::getModel('catalog/product')
+    ->getCollection()
+    ->addAttributeToSelect(array('name','thumbnail','product_url', 'msrp', 'hupsell', 'pupsell', 'supsell', 'image', 'small_image', 'special_price'))
+    ->addPriceData()
+    ->addCategoryFilter($category)
+    ->load();
+?>
+
+
+<?php foreach ($_products as $_product): ?>
+            <?php
+                // define this here so we can keep the bottom tidy
+                $img = Mage::helper('catalog/image')->init($_product, 'small_image');
+                $name = $_product->getName();
+                $url = $_product->getProductUrl();
+                $msrp = number_format($_product->getMsrp(), 2);
+                $price = number_format($_product->getPrice(), 2);
+
+                // sale price
+                $specialPrice = $_product->getSpecialPrice();
+
+                if ( $specialPrice ){
+                    $specialPrice = number_format($specialPrice, 2);
+                    $priceParts = explode(".", $specialPrice);
+                    $dollars = $priceParts[0];
+                    $cents = $priceParts[1];
+                }
+                else{
+                    $priceParts = explode(".", $price);
+                    $dollars = $priceParts[0];
+                    $cents = $priceParts[1];
+                }
+
+                // upsell
+                $pUpsell = $_product->getPupsell();
+
+            ?>
+
+
+            <li>
+                <div class="proImg"><a title="<?php echo $name ?>" href="<?php echo $url ?>"><img src="<?php echo $img ?>" alt="<?php echo $name ?>" /></a></div>
+                <p>
+                    <a title="<?php echo $name ?>" href="<?php echo $url ?>">
+                        <?php echo $name ?>
+                    </a>
+                </p>
+                <div class="pricePnl">
+                    <p class="old-price">
+                        <span class="old-price msrp-price home">
+                            MSRP: <?php echo $msrp; ?>
+                        </span>
+                        <?php if ( $specialPrice ) : ?>
+                        <span class="old-price price">
+                           $<?php echo $price; ?>
+                        </span>
+                        <?php endif; ?>
+                    </p>
+                    <p class="<?php echo ( $specialPrice ? 'special-price' : '' ) ?>">
+                        <?php if( $specialPrice ) : ?>
+                            <span class="price-label" style="font-size: 16px;">Sale Price:</span>
+                            <span class="price">$<?php echo $specialPrice; ?></span>
+                        <?php else: ?>
+                            <span class="price">$<span><?php echo $dollars; ?>.</span><sup><?php echo $cents; ?></sup></span>
+                        <?php endif; ?>
+
+                    </p>
+                </div>
+                <a class="addCart" title="<?php echo $name ?>" href="<?php echo $url ?>">View Product</a>
+                <?php if ( $pUpsell ) : ?>
+                    <span style="color: #ff4949; font-size: 14px;">Special: Free Extra Air Filter</span>
+                 <?php endif; ?>
+            </li>
+
+<?php endforeach; ?>
+
+

@@ -1,0 +1,125 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+$_helper = $this->helper('catalog/output');
+$_product = Mage::getModel('catalog/product')->load($_GET['id']);
+$theme = $this->helper('ultimo');
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body class="page-empty <?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">
+    <div>
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <?php echo $this->getChildHtml('global_messages') ?>
+        <?php echo $this->getChildHtml('content') ?>
+		<div class="clear"> </div>
+		<?php $upsells = $_product->getCrossSellProducts();  ?>
+		<?php if($upsells[0]): $id0 =  $upsells[0]->getId(); if($upsells[0]->getPosition() == 1) { $upsell_0 = Mage::getModel('catalog/product')->load($id0); } elseif($upsells[0]->getPosition() == 2) { $upsell_1 = Mage::getModel('catalog/product')->load($id0); } elseif($upsells[0]->getPosition() == 3) { $upsell_2 = Mage::getModel('catalog/product')->load($id0); } else { $upsell_0 = Mage::getModel('catalog/product')->load($id0); }  endif; ?>
+		<?php if($upsells[1]): $id1 =  $upsells[1]->getId(); if($upsells[1]->getPosition() == 1) { $upsell_0 = Mage::getModel('catalog/product')->load($id1); } elseif($upsells[1]->getPosition() == 2) { $upsell_1 = Mage::getModel('catalog/product')->load($id1); } elseif($upsells[1]->getPosition() == 3) { $upsell_2 = Mage::getModel('catalog/product')->load($id1); } else { $upsell_1 = Mage::getModel('catalog/product')->load($id1); } endif; ?>
+		<?php if($upsells[2]): $id2 =  $upsells[2]->getId(); if($upsells[2]->getPosition() == 1) { $upsell_0 = Mage::getModel('catalog/product')->load($id2); } elseif($upsells[2]->getPosition() == 2) { $upsell_1 = Mage::getModel('catalog/product')->load($id2); } elseif($upsells[2]->getPosition() == 3) { $upsell_2 = Mage::getModel('catalog/product')->load($id2); } else { $upsell_2 = Mage::getModel('catalog/product')->load($id2); } endif; ?>
+		<div class="upsell-container">
+			<div class="upsell-top">
+				<a href="#" onclick="parent.jQuery.fancybox.close()" class="alignleft">Continue Shopping</a>
+				<a href="#" onclick="window.top.location.href='/checkout/cart/'" class="alignright">No Thanks, Continue To Cart</a>
+			</div>
+			<div class="clear"> </div>
+
+			<?php if($upsell_0): ?>		
+			<div class="upsell-content">
+				<div class="upsell-header dark"><h2>Subscribe & Save</h2></div>
+				<div class="upsell-img"><img src="<?php echo $this->helper('catalog/image')->init($upsell_0, 'thumbnail'); ?>"/> </div>
+				<div class="upsell-name"><h3><?php echo $upsell_0->getName(); ?></h3> <h4>Replacement Filter Subscription</h4> </div>
+				<div class="upsell-actions">
+					<?php if(!$_product->isGrouped()): ?>
+						<div class="qty-wrapper v-center">
+							<label for="qty"><?php echo $this->__('Qty:') ?></label>
+							<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+						</div>
+					<?php endif; ?>
+					<button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart v-center" onclick="productAddToCartForm2.submit(this)"><span><span><?php echo "Subscribe"; ?></span></span></button>
+				</div>
+				<div class="upsell-desc"><?php echo $upsell_0->getDescription(); ?>	</div>
+			</div>
+			<?php endif; ?>
+			
+			<?php if($upsell_1): ?>	
+			<div class="upsell-content light">
+				<div class="upsell-header light"><h2>Buy More & Save</h2></div>
+				<div class="upsell-img"><img src="<?php echo $this->helper('catalog/image')->init($upsell_1, 'thumbnail'); ?>"/> </div>
+				<div class="upsell-name"><h3><?php echo $upsell_1->getName(); ?></h3> <h4>Additional Replacement Filters</h4> </div>
+				<div class="upsell-actions">
+					<?php if(!$_product->isGrouped()): ?>
+						<div class="qty-wrapper v-center">
+							<label for="qty"><?php echo $this->__('Qty:') ?></label>
+							<input type="text" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+						</div>
+					<?php endif; ?>
+					<button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart v-center" onclick="productAddToCartForm2.submit(this)"><span><span><?php echo "Add To Cart"; ?></span></span></button>
+				</div>
+				<div class="upsell-desc">
+					<?php $_tierPricing = $this->getLayout()->createBlock('catalog/product_view','product.tierprices',array('product_id' =>$upsell_1->getId()));
+					$_tierPricing->setTemplate('catalog/product/view/tierprices.phtml'); echo $_tierPricing->getTierPriceHtml();?> 
+				</div>
+			</div>
+			<?php endif; ?>
+
+			<?php if($upsell_2): ?>	
+			<div class="upsell-content">
+				<div class="upsell-header dark"><h2>Bundle & Save</h2></div>
+				<div class="upsell-img"><img src="<?php echo $this->helper('catalog/image')->init($upsell_2, 'thumbnail'); ?>"/> </div>
+				<div class="upsell-name"><h3><?php echo $upsell_2->getName(); ?></h3> <h4>Double Your <br/> Order</h4> </div>
+				<div class="upsell-actions">
+					<?php if(!$_product->isGrouped()): ?>
+						<div class="qty-wrapper v-center">
+							<label for="qty"><?php echo $this->__('Qty:') ?></label>
+							<input type="text" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+						</div>
+					<?php endif; ?>
+					<button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart v-center" onclick="productAddToCartForm2.submit(this)"><span><span><?php echo "Upgrade To Bundle"; ?></span></span></button>
+				</div>
+				<div class="upsell-desc"><?php echo $upsell_2->getDescription(); ?> </div>
+			</div>
+			<?php endif; ?>
+
+			<div class="clear"> </div>
+			<div class="upsell-bottom">
+				<a href="#" onclick="parent.jQuery.fancybox.close()" class="alignleft">Continue Shopping</a>
+				<a href="#" onclick="window.top.location.href='/checkout/cart/'" class="alignright">No Thanks, Continue To Cart</a>
+			</div>
+		</div>
+		<div class="clear"> </div>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+    </div>
+</body>
+</html>

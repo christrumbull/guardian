@@ -1,0 +1,230 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php   
+    $theme = $this->helper('ultimo');   
+    $headerInnerBgColor     = $theme->getCfgDesign('header/inner_bg_color');
+    $navStretched           = $theme->getCfgDesign('nav/stretched');
+    $navInnerBgColor        = $theme->getCfgDesign('nav/inner_bg_color');
+    $mainInnerBgColor       = $theme->getCfgDesign('main/inner_bg_color');
+    
+    //Header settings
+    $headerCss = array();
+    
+    if ($theme->isColor($headerInnerBgColor))
+    {
+        $headerCss[] = 'show-bg';
+    }
+    else
+    {
+        //If header has no color and menu is stretched, header is also stretched
+        if ($navStretched)
+        {
+            $headerCss[] = 'stretched';
+        }
+    }
+    
+    //Menu settings
+    $navCss = array();
+    
+    //Is menu stretched (full available width, margins are removed)
+    if ($navStretched)
+    {
+        $navCss[] = 'stretched';
+    }
+    
+    //If header or menu have bg color, nav also has bg color
+    if ($theme->isColor($headerInnerBgColor))
+    {
+        $navCss[] = 'show-bg';
+    }
+    elseif ($theme->isColor($mainInnerBgColor))
+    {
+        $navCss[] = 'show-bg';
+    }
+
+    if ($theme->isColor($navInnerBgColor))
+    {
+        $navCss[] = 'has-outline';
+    }
+?>
+<?php
+    //Search box classes
+    $searchClasses = ' search-wrapper search-wrapper-mobile';
+
+    //Search box
+    $tmpHtml = $this->getChildHtml('topSearch');
+    $searchPosition = $theme->getCfg('header/search_position');
+    switch ($searchPosition)
+    {
+        case 20:
+            $p['centralCol'][0] = $tmpHtml;
+            break;
+        case 30:
+            $p['rightCol'][0] = $tmpHtml;
+            break;
+        case 31:
+            $p['rightCol'][1] = $tmpHtml;
+            break;
+        case 32:
+            $p['rightCol'][2] = $tmpHtml;
+            break;
+        case 33:
+            $p['rightCol'][3] = $tmpHtml;
+            break;
+    }
+
+    //Line break
+    $tmpHtml = '<div class="line-break-after"></div>';
+    $lineBreakPosition = $theme->getCfg('header/toplinks_break_position');
+    switch ($lineBreakPosition)
+    {
+        case 30:
+            $p['rightColBreak'][0] = $tmpHtml;
+            break;
+        case 31:
+            $p['rightColBreak'][1] = $tmpHtml;
+            break;
+        case 32:
+            $p['rightColBreak'][2] = $tmpHtml;
+            break;
+        case 33:
+            $p['rightColBreak'][3] = $tmpHtml;
+            break;
+        case 34:
+            $p['rightColBreak'][4] = $tmpHtml;
+            break;
+        case 35:
+            $p['rightColBreak'][5] = $tmpHtml;
+            break;
+    }
+
+
+
+    // --------------------------------------------------------------
+    //Width (in grid units) of sections
+    $leftColUnits               = 4; //$theme->getCfg('header/left_column');
+    $centralColUnits            = 4; //$theme->getCfg('header/center_column');
+    $rightColUnits              = 4; //$theme->getCfg('header/right_column');
+
+    //If no search box in the center
+    if (!isset($p['centralCol']))
+    {
+        $centralColUnits        = 0;
+        $rightColUnits          += 12 - ($leftColUnits + $rightColUnits);
+    }
+
+    //Grid classes
+    $leftColGridClass           = 'grid12-' . $leftColUnits;
+    $centralColGridClass        = 'grid12-' . $centralColUnits;
+    $rightColGridClass          = 'grid12-' . $rightColUnits;
+    if (empty($centralColUnits))
+    {
+        $centralColGridClass = '';
+    }
+
+    // --------------------------------------------------------------
+    
+?>
+<div class="header-container" id="top">
+<div class="header-container2">
+<div class="header-container3">
+
+    <div id="header">
+			<!----<Top Bar>---->
+			<div class="topBar">
+				<div class="topBarWrap clearfix">
+					<!----<Top Menu>---->
+					<div class="topBarLeft">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Support</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Contact Us</a></li>
+						</ul>
+					</div>
+					<!----</Top Menu>---->
+					
+					<!----<Top Contact>---->
+					<div class="topContact">
+						<h4>866.603.5900<span>M-F 8-5<sub>EST</sub></span></h4>
+					</div>
+					<!----</Top Contact>---->
+					
+					<!----<Top Right>---->
+					<div class="topBarRight">
+						<ul>
+							<li><a href="#">My Account</a></li>
+							<li class="cart"><a href="#">Cart <span>($109.99)</span></a></li>
+						</ul>
+					</div>
+					<!----</Top Right>---->
+				</div>
+			</div>
+			<!----</Top Bar>---->
+			
+			<!----<Header Bottom>---->
+			<div class="headerBottom clearfix">
+				<span class="logo"><a href="#"><img src="img/logo.png" width="" height="" alt="" /></a></span>
+				<div class="headerBottomRight">
+					<div class="freeShipping">
+						<h4>FREE SHIPPING <span>with any order over $75+</span></h4>
+					</div>
+					<div class="rightSer clearfix">
+						<div class="serchArea">
+							<form method="post" name="">
+								<input type="text" name="" placeholder="search by keyword" />
+								<input type="submit" name="" value="" />
+							</form>
+						</div>
+						<a href="#" class="learningCenter"><span>Learning Center</span></a>
+					</div>
+				</div>
+			</div>
+			<!----</Header Bottom>---->
+			
+			<!----<Navigation>---->
+			<div class="navigation">
+				<div class="navigationWrap">
+					<ul class="clearfix">
+						<li><a href="#">UV Air Sanitizers</a></li>
+						<li><a href="#">UV Air Purifiers</a></li>
+						<li><a href="#">Ultrasonic Humidifiers</a></li>
+						<li><a href="#">Accessories, Bulbs & Filters</a></li>
+					</ul>
+				</div>
+			</div>
+			<!----</Navigation>---->
+		</div>
+		<!----</Header>---->
+
+</div> <!-- end: header-container3 -->
+</div> <!-- end: header-container2 -->
+</div> <!-- end: header-container -->

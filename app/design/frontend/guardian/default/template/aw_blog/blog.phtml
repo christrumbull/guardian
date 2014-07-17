@@ -1,0 +1,33 @@
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div><!--<div class="page-title blog">
+<h1>Healthy Living Blog </h1> 
+
+Many are surprised to learn the Environmental Protection Agency ranks indoor air quality as one of the top five environmental health issues we currently face. Poor indoor air quality can create a variety of health concerns, including aggravating your allergies, triggering asthma attacks and the development of serious health conditions. Read more to learn how poor indoor air quality can impact your health.</div>
+
+<br/><br/><br/><br/>-->
+<div class="page-title blog">
+<h3>Recent Posts</h3> 
+</div>
+
+<?php foreach ($posts as $post): ?>
+    <div class="postWrapper">
+        <div class="postTitle">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+        </div>
+        <div class="postContent"><?php echo $post->getPostContent(); ?></div>
+
+        <?php echo $this->getBookmarkHtml($post) ?>
+        <div class="tags"><?php echo $this->getTagsHtml($post) ?></div>
+        <div class="postDetails">
+            <?php if ($this->getCommentsEnabled()): ?>
+                <?php echo $post->getCommentCount(); ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a> |
+            <?php endif; ?>
+            <?php $postCats = $post->getCats(); ?>
+            <?php if (!empty($postCats)): ?>
+            <?php else: ?>
+            <?php endif; ?></div>
+    </div>
+<?php endforeach; ?>

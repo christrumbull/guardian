@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Deviant_PurolatorShipping>
+            <version>0.1.1</version>
+            <depends>
+                <Mage_Shipping />
+            </depends>
+        </Deviant_PurolatorShipping>
+    </modules>
+    <global>
+        <models>
+            <ddshippinga>
+                <class>Deviant_PurolatorShipping_Model_Carrier</class>
+            </ddshippinga>
+            <deviant>
+              <shipping>
+                  <carrier>
+                    <deviantpurolator>
+                      <class>Deviant_PurolatorShipping_Model_Carrier_Purolator</class>
+                    </deviantpurolator>
+                  </carrier>
+              </shipping>
+            </deviant>
+        </models>
+        <resources>
+            <ddshippinga_setup>
+                <setup>
+                    <module>Deviant_PurolatorShipping</module>
+                </setup>
+                <connection>
+                    <use>directory_setup</use>
+                </connection>
+            </ddshippinga_setup>
+            <ddshippinga_read>
+                <connection>
+                    <use>local_read</use>
+                </connection>
+            </ddshippinga_read>
+        </resources>
+        <sales>
+            <shipping>
+                <carriers>
+                    <localdelivery>
+                        <class>Deviant_PurolatorShipping_Model_Carrier_Purolator</class>
+                    </localdelivery>
+                </carriers>
+            </shipping>
+        </sales>
+    </global>
+
+    <default>
+        <carriers>
+            <deviantpurolator>
+                <active>0</active>
+                <model>Deviant_PurolatorShipping_Model_Carrier_Purolator</model>
+                <name>Deviant Purolator</name>
+                <title>Purolator</title>
+                <handling_fee>0</handling_fee>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <widthattribute>width</widthattribute>
+                <defaultwidth></defaultwidth>
+                <lengthattribute>length</lengthattribute>
+                <defaultlength></defaultlength>
+                <heightattribute>height</heightattribute>
+                <defaultheight></defaultheight>
+                <locale_choose>en</locale_choose>
+                <convert_size>1</convert_size>
+                <max_package_weight>69</max_package_weight>
+            </deviantpurolator>
+        </carriers>
+    </default>
+</config>
